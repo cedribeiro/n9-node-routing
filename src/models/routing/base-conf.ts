@@ -2,7 +2,7 @@ import { N9ConfBaseConf } from '@neo9/n9-node-conf';
 import { Type } from 'class-transformer';
 import { IsOptional, IsString, ValidateNested } from 'class-validator';
 
-import { Options } from './options';
+import { Options } from './options.js';
 
 export class N9NodeRoutingBaseConf implements N9ConfBaseConf {
 	@IsOptional()

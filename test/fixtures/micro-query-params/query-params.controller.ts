@@ -1,4 +1,4 @@
-import { Get, JsonController, QueryParams, Service } from '../../../src';
+import { Get, JsonController, QueryParams, Service } from '../../../src/index.js';
 import { FilterQuery } from './models/filter-query.models';
 
 @Service()

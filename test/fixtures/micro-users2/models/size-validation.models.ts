@@ -1,6 +1,6 @@
-import * as _ from 'lodash';
+import _ from 'lodash-es';
 
-import { Exclude, Expose, IsInt, IsOptional, Max, Min, Transform } from '../../../../src';
+import { Exclude, Expose, IsInt, IsOptional, Max, Min, Transform } from '../../../../src/index.js';
 
 @Exclude()
 export class SizeValidation {

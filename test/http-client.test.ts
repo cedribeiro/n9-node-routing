@@ -1,16 +1,22 @@
 import { N9Log } from '@neo9/n9-node-log';
 import { N9Error } from '@neo9/n9-node-utils';
 import ava, { Assertions } from 'ava';
-import * as FormData from 'form-data';
+import FormData from 'form-data';
 import * as fs from 'fs';
 import { join } from 'path';
+import * as path from 'path';
 import * as stdMock from 'std-mocks';
+import { fileURLToPath } from 'url';
 
 // tslint:disable-next-line:import-name
-import N9NodeRouting, { N9HttpClient } from '../src';
-import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons';
-import { end } from './fixtures/helper';
+import N9NodeRouting, { N9HttpClient } from '../src/index.js';
+import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons.js';
+import { end } from './fixtures/helper.js';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(__filename);
 const print = commons.print;
 
 ava('Call a route with HttpClient', async (t: Assertions) => {

@@ -1,7 +1,7 @@
 import { IsBoolean, IsOptional } from 'class-validator';
 import * as http from 'http';
 
-import { isStringOrNumber } from '../../validators';
+import { isStringOrNumber } from '../../validators/index.js';
 
 export class BodyParserOptions {
 	/**

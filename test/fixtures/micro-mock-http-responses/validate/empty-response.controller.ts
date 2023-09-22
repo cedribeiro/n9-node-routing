@@ -1,4 +1,4 @@
-import { Get, JsonController, Service } from '../../../../src';
+import { Get, JsonController, Service } from '../../../../src/index.js';
 
 @Service()
 @JsonController()

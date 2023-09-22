@@ -5,14 +5,20 @@ import { Express } from 'express';
 import * as fs from 'fs-extra';
 import { Server } from 'http';
 import { MongoMemoryServer } from 'mongodb-memory-server';
-import { join } from 'path';
+import { dirname, join } from 'path';
 import { register } from 'prom-client';
 import * as stdMock from 'std-mocks';
 import { Container } from 'typedi';
+import { fileURLToPath } from 'url';
 
 // tslint:disable-next-line:import-name
-import n9NodeRouting, { N9HttpClient, N9NodeRouting } from '../../src';
-import commons, { closeServer, defaultNodeRoutingConfOptions } from './commons';
+import n9NodeRouting, { N9HttpClient, N9NodeRouting } from '../../src/index.js';
+import commons, { closeServer, defaultNodeRoutingConfOptions } from './commons.js';
+
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = dirname(__filename);
 
 export async function init(
 	folder: string,
@@ -35,7 +41,7 @@ export async function init(
 			},
 			// debug: true,
 		});
-		const mongoConnectionString = await mongodServer.getUri();
+		const mongoConnectionString = mongodServer.getUri();
 		const db = await MongoUtils.connect(mongoConnectionString);
 		Container.set('db', db);
 		(global as any).db = db;

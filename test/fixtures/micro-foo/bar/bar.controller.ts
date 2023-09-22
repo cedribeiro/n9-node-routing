@@ -1,8 +1,8 @@
 import { N9Error } from '@neo9/n9-node-utils';
 import { Service } from 'typedi';
 
-import { Body, Get, JsonController, Param, Post, QueryParam } from '../../../../src';
-import { BodyBar } from './body-bar.models';
+import { Body, Get, JsonController, Param, Post, QueryParam } from '../../../../src/index.js';
+import { BodyBar } from './body-bar.models.js';
 
 @Service()
 @JsonController()

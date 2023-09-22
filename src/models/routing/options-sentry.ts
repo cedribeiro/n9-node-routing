@@ -11,8 +11,8 @@ import {
 	ValidateNested,
 } from 'class-validator';
 
-import { isStringOrNumber } from '../../validators/string-or-number.validator';
-import { NodeOptions } from './implementations/sentry-node-options.implementation';
+import { isStringOrNumber } from '../../validators/string-or-number.validator.js';
+import { NodeOptions } from './implementations/sentry-node-options.implementation.js';
 
 export class MiddlewareErrorOutput {
 	@IsOptional()
@@ -59,7 +59,7 @@ export class SentryOptionsAdditionalIntegrationsOptions {
 export class SentryOptionsAdditionalIntegrations extends SentryOptionsIntegration {
 	@IsString()
 	@IsIn(['tracing'])
-	kind: 'tracing';
+	declare kind: 'tracing';
 
 	@IsOptional()
 	@ValidateNested()

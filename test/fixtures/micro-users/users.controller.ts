@@ -11,10 +11,10 @@ import {
 	Post,
 	Service,
 	Session,
-} from '../../../src';
-import { TokenContent } from './models/token-content.models';
-import { User } from './models/users.models';
-import { UsersService } from './users.service';
+} from '../../../src/index.js';
+import { TokenContent } from './models/token-content.models.js';
+import { User } from './models/users.models.js';
+import { UsersService } from './users.service.js';
 
 @Service()
 @JsonController('/users')

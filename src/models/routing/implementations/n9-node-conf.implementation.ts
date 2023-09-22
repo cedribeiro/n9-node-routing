@@ -3,7 +3,7 @@ import { Type } from 'class-transformer';
 import { IsEnum, IsObject, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { PartialDeep } from 'type-fest';
 
-import { N9NodeRouting } from '../../..';
+import { N9NodeRouting } from '../../../index.js';
 
 export class N9NodeConfOptionsExtendConfigPath {
 	@IsOptional()

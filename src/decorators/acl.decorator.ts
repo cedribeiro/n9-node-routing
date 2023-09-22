@@ -1,5 +1,5 @@
-import { AclPerm } from '../models/routes.models';
-import * as RoutesService from '../routes.service';
+import { AclPerm } from '../models/routes.models.js';
+import * as RoutesService from '../routes.service.js';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export function Acl(perms: AclPerm[], loadPath?: string): MethodDecorator {

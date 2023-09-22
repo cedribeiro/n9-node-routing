@@ -12,9 +12,9 @@ import {
 	ValidatorConstraint,
 } from 'class-validator';
 
-import { IsString } from '../../../../src';
-import { ArrayValidator } from './array-validator.models';
-import { logValidator } from './print-validator.models';
+import { IsString } from '../../../../src/index.js';
+import { ArrayValidator } from './array-validator.models.js';
+import { logValidator } from './print-validator.models.js';
 
 export enum UserType {
 	BACK = 'back',

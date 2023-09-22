@@ -1,4 +1,4 @@
-import { Acl, Body, Get, JsonController, Post, Service } from '../../../../src';
+import { Acl, Body, Get, JsonController, Post, Service } from '../../../../src/index.js';
 
 @Service()
 @JsonController()

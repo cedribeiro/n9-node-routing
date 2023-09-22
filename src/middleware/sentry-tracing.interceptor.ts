@@ -4,7 +4,7 @@ import * as Sentry from '@sentry/node';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { Inject, Service } from 'typedi';
 
-import * as N9NodeRouting from '../models/routing';
+import * as N9NodeRouting from '../models/routing/index.js';
 
 @Service()
 @Middleware({ type: 'before' })

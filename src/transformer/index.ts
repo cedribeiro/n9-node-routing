@@ -1,1 +1,1 @@
-export * from './secret.transformer';
+export * from './secret.transformer.js';

@@ -3,15 +3,21 @@ import ava, { Assertions } from 'ava';
 import * as fs from 'fs';
 import got from 'got';
 import { join } from 'path';
+import * as path from 'path';
 import * as stdMock from 'std-mocks';
+import { fileURLToPath } from 'url';
 
+import { generateDocumentationJsonToFile } from '../src/generate-documentation-json.js';
 // tslint:disable-next-line:import-name
-import N9NodeRouting from '../src';
-import { generateDocumentationJsonToFile } from '../src/generate-documentation-json';
-import { Options } from '../src/models/routing/index';
-import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons';
-import { end } from './fixtures/helper';
+import N9NodeRouting from '../src/index.js';
+import { Options } from '../src/models/routing/index.js';
+import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons.js';
+import { end } from './fixtures/helper.js';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(__filename);
 const microValidatePath = join(__dirname, 'fixtures/micro-validate/modules');
 
 ava('Read documentation', async (t: Assertions) => {

@@ -3,11 +3,14 @@ import { signalIsNotUp, signalIsUp } from '@promster/express';
 import { Express, NextFunction, Request, Response } from 'express';
 import * as fs from 'fs';
 import * as SwaggerUi from 'swagger-ui-express';
-import type { PackageJson } from 'types-package-json';
+import type { PackageJson } from 'type-fest';
 
-import { generateDocumentationJson, getDocumentationJsonPath } from './generate-documentation-json';
-import * as N9NodeRouting from './models/routing';
-import * as RoutesService from './routes.service';
+import {
+	generateDocumentationJson,
+	getDocumentationJsonPath,
+} from './generate-documentation-json.js';
+import * as N9NodeRouting from './models/routing/index.js';
+import * as RoutesService from './routes.service.js';
 
 let shutdownAsked = false;
 let exposedConf: object;

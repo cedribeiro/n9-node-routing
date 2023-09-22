@@ -1,23 +1,23 @@
 import { Action } from '@benjd90/routing-controllers';
 import { N9ConfOptions } from '@neo9/n9-node-conf';
-import n9NodeLog from '@neo9/n9-node-log';
+import * as n9NodeLog from '@neo9/n9-node-log';
 import { N9Error } from '@neo9/n9-node-utils';
 import * as Sentry from '@sentry/node';
 import * as appRootDir from 'app-root-dir';
 import { ValidatorOptions } from 'class-validator';
 import * as express from 'express';
 import * as fs from 'fs';
-import * as _ from 'lodash';
+import _ from 'lodash-es';
 import * as morgan from 'morgan';
 import { join } from 'path';
 
-import { ErrorHandler } from './middleware/error-handler.interceptor';
-import { PrometheusInterceptor } from './middleware/prometheus.interceptor';
-import { SentryRequestInterceptor } from './middleware/sentry-request.interceptor';
-import { SentryTracingInterceptor } from './middleware/sentry-tracing.interceptor';
-import { SessionLoaderInterceptor } from './middleware/session-loader.interceptor';
-import * as N9NodeRouting from './models/routing';
-import * as Utils from './utils';
+import { ErrorHandler } from './middleware/error-handler.interceptor.js';
+import { PrometheusInterceptor } from './middleware/prometheus.interceptor.js';
+import { SentryRequestInterceptor } from './middleware/sentry-request.interceptor.js';
+import { SentryTracingInterceptor } from './middleware/sentry-tracing.interceptor.js';
+import { SessionLoaderInterceptor } from './middleware/session-loader.interceptor.js';
+import * as N9NodeRouting from './models/routing/index.js';
+import * as Utils from './utils.js';
 
 function applyLogsOptionsDefaults(
 	options: N9NodeRouting.Options,
@@ -32,7 +32,7 @@ function applyLogsOptionsDefaults(
 			: environment !== 'development';
 
 	if (!options.log) {
-		options.log = n9NodeLog(appName, {
+		options.log = n9NodeLog.default(appName, {
 			...options.logOptions,
 			formatJSON: options.enableLogFormatJSON,
 		});

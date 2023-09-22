@@ -1,4 +1,4 @@
-import { Conf } from './index.models';
+import { Conf } from './index.models.js';
 
 const conf: Conf = {};
 export default conf;

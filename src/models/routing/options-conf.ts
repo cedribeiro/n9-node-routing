@@ -2,8 +2,8 @@ import { Type } from 'class-transformer';
 import { IsBoolean, IsOptional, ValidateNested } from 'class-validator';
 import { Class } from 'type-fest';
 
-import { N9NodeRoutingBaseConf } from './base-conf';
-import { N9NodeConfOptions } from './implementations/n9-node-conf.implementation';
+import { N9NodeRoutingBaseConf } from './base-conf.js';
+import { N9NodeConfOptions } from './implementations/n9-node-conf.implementation.js';
 
 export class ConfValidationOptions<ConfType extends N9NodeRoutingBaseConf = N9NodeRoutingBaseConf> {
 	@IsOptional()

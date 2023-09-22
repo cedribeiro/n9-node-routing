@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as multer from 'multer';
 import { PassThrough } from 'stream';
 
-import { JsonController, Post, Service, UploadedFile } from '../../../../src';
+import { JsonController, Post, Service, UploadedFile } from '../../../../src/index.js';
 
 // to keep code clean better to extract this function into separate file
 class StorageEngine implements multer.StorageEngine {

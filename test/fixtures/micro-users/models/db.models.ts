@@ -1,4 +1,4 @@
-import { DateParser, Expose } from '../../../../src';
+import { DateParser, Expose } from '../../../../src/index.js';
 
 export class BaseMongoObjectInfosUpdate {
 	@Expose()

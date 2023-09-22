@@ -10,7 +10,7 @@ import {
 import { ValidationMetadata } from 'class-validator/types/metadata/ValidationMetadata';
 import * as stdMock from 'std-mocks';
 
-import commons from './fixtures/commons';
+import commons from './fixtures/commons.js';
 
 const userValidationSchemas: ValidationSchema[] = [
 	{

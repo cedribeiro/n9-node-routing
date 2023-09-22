@@ -3,7 +3,7 @@ import * as crypto from 'crypto';
 import type { Cursor, FilterQuery } from 'mongodb';
 import { Service } from 'typedi';
 
-import { UserDetails, UserEntity, UserListItem, UserRequestCreate } from './users.models';
+import { UserDetails, UserEntity, UserListItem, UserRequestCreate } from './users.models.js';
 
 @Service()
 export class UsersService {

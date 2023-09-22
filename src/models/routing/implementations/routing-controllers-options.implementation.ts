@@ -14,7 +14,7 @@ import {
 } from 'class-validator';
 import { Class } from 'type-fest';
 
-import { ClassTransformOptions } from './class-transform-options.implementation';
+import { ClassTransformOptions } from './class-transform-options.implementation.js';
 
 export class RoutingControllersOptionsDefaultsParamOptions {
 	@IsOptional()

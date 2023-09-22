@@ -1,5 +1,5 @@
-import { Allow, IsEmail, IsString, MinLength } from '../../../../src';
-import { BaseMongoObject } from './db.models';
+import { Allow, IsEmail, IsString, MinLength } from '../../../../src/index.js';
+import { BaseMongoObject } from './db.models.js';
 
 export class User extends BaseMongoObject {
 	public uid: string;

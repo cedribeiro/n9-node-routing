@@ -11,7 +11,7 @@ import {
 	ValidateNested,
 } from 'class-validator';
 
-import { AnyFunction } from './utils';
+import { AnyFunction } from './utils.js';
 
 export class ClassTransformOptionsTargetMap implements TargetMapInterface {
 	// No validation because it shouldn't be in the conf but passed to the constructor as an option

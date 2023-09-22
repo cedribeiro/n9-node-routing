@@ -1,9 +1,15 @@
 import { N9Log } from '@neo9/n9-node-log';
 import { Server } from 'http';
 import { join } from 'path';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
-import { N9HttpClient, N9NodeRouting } from '../../src';
+import { N9HttpClient, N9NodeRouting } from '../../src/index.js';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(__filename);
 export default {
 	print: true,
 	// Allow developers to add console log in N9NodeRouting then exclude them for tests

@@ -1,7 +1,7 @@
 import { BaseMongoObject } from '@neo9/n9-mongo-client/dist/src/models';
 import { Exclude, Expose } from 'class-transformer';
 
-import { Allow, IsEmail, IsString, MinLength } from '../../../src';
+import { Allow, IsEmail, IsString, MinLength } from '../../../src/index.js';
 
 export class UserRequestCreate {
 	@IsString()
@@ -38,7 +38,7 @@ export class UserEntity extends BaseMongoObject {
 
 export class UserDetails extends UserEntity {
 	@Exclude()
-	public password: string;
+	public declare password: string;
 }
 
 @Exclude()

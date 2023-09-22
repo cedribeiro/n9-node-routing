@@ -4,9 +4,9 @@ import { NextFunction, Request, Response } from 'express';
 import * as stdMock from 'std-mocks';
 
 // tslint:disable-next-line:import-name
-import N9NodeRouting, { N9HttpClient } from '../src';
-import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons';
-import { end } from './fixtures/helper';
+import N9NodeRouting, { N9HttpClient } from '../src/index.js';
+import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons.js';
+import { end } from './fixtures/helper.js';
 
 ava('Check if the hooks are called', async (t: Assertions) => {
 	stdMock.use({ print: commons.print });

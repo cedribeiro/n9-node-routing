@@ -1,6 +1,12 @@
 import { Service } from 'typedi';
 
-import { Get, JsonController, N9JSONStreamResponse, QueryParam, waitFor } from '../../../src';
+import {
+	Get,
+	JsonController,
+	N9JSONStreamResponse,
+	QueryParam,
+	waitFor,
+} from '../../../src/index.js';
 
 @Service()
 @JsonController('/users')

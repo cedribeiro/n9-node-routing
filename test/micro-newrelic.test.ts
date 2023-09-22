@@ -2,7 +2,7 @@ import { N9Error } from '@neo9/n9-node-utils';
 import ava, { Assertions } from 'ava';
 import * as tmp from 'tmp-promise';
 
-import { end, getLogsFromFile, init, urlPrefix } from './fixtures/helper';
+import { end, getLogsFromFile, init, urlPrefix } from './fixtures/helper.js';
 
 ava.beforeEach(() => {
 	delete (global as any).log;

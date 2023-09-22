@@ -8,15 +8,15 @@ import { IncomingMessage } from 'http';
 import * as QueryString from 'query-string';
 import * as shortid from 'shortid';
 import { PassThrough } from 'stream';
-import urlJoin = require('url-join');
+import urlJoin from 'url-join';
 
 import {
 	HttpClientGotOptions,
 	HttpClientOptions,
 	HttpClientSensitiveHeadersOptions,
-} from '../models/routing/options-http-client';
-import { RequestIdKey, RequestIdNamespaceName } from '../requestid';
-import { getEnvironment } from '../utils';
+} from '../models/routing/options-http-client.js';
+import { RequestIdKey, RequestIdNamespaceName } from '../requestid.js';
+import { getEnvironment } from '../utils.js';
 
 export type N9HttpClientQueryParams =
 	| string

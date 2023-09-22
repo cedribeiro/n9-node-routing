@@ -1,4 +1,4 @@
-import { Acl, JsonController, Post, Service } from '../../../../src';
+import { Acl, JsonController, Post, Service } from '../../../../src/index.js';
 
 @Service()
 @JsonController('/tata')

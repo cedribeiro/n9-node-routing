@@ -1,8 +1,8 @@
 import { N9JSONStreamResponse } from '@neo9/n9-node-utils';
 import { Container } from 'typedi';
 
-import { Cargo } from './cargo';
-import { N9HttpClient } from './http-client-base';
+import { Cargo } from './cargo.js';
+import { N9HttpClient } from './http-client-base.js';
 
 export class HttpCargoBuilder {
 	public static BUILD<RESPONSE extends object = { _id: string }>(

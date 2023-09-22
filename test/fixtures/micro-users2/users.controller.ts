@@ -17,11 +17,11 @@ import {
 	Res,
 	Service,
 	Session,
-} from '../../../src';
-import { SizeValidation } from './models/size-validation.models';
-import { TokenContent } from './models/token-content.models';
-import { UserDetails, UserListItem, UserRequestCreate } from './users.models';
-import { UsersService } from './users.service';
+} from '../../../src/index.js';
+import { SizeValidation } from './models/size-validation.models.js';
+import { TokenContent } from './models/token-content.models.js';
+import { UserDetails, UserListItem, UserRequestCreate } from './users.models.js';
+import { UsersService } from './users.service.js';
 
 @Service()
 @JsonController('/users')

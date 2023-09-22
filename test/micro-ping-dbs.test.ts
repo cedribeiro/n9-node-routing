@@ -6,9 +6,9 @@ import { register } from 'prom-client';
 import * as stdMock from 'std-mocks';
 
 // tslint:disable-next-line:import-name
-import N9NodeRouting from '../src';
-import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons';
-import { end } from './fixtures/helper';
+import N9NodeRouting from '../src/index.js';
+import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons.js';
+import { end } from './fixtures/helper.js';
 
 const print = commons.print;
 
@@ -31,7 +31,7 @@ for (const prometheusOption of [{}, undefined, { isEnabled: false }, { isEnabled
 				},
 				// debug: true,
 			});
-			const mongoConnectionString = await mongodServer.getUri();
+			const mongoConnectionString = mongodServer.getUri();
 			(global as any).log = new N9Log('test');
 			await MongoUtils.connect(mongoConnectionString); // set global.dbClient
 
@@ -76,8 +76,8 @@ for (const prometheusOption of [{}, undefined, { isEnabled: false }, { isEnabled
 				},
 				// debug: true,
 			});
-			const mongoConnectionString1 = await mongodServer.getUri('db-1');
-			const mongoConnectionString2 = await mongodServer.getUri('db-2');
+			const mongoConnectionString1 = mongodServer.getUri('db-1');
+			const mongoConnectionString2 = mongodServer.getUri('db-2');
 			(global as any).log = new N9Log('test');
 			await MongoUtils.connect(mongoConnectionString1); // set global.dbClient
 			const dbClient1 = (global as any).dbClient;

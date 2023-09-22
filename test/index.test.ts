@@ -5,13 +5,13 @@ import * as stdMock from 'std-mocks';
 import * as tmp from 'tmp-promise';
 
 // tslint:disable-next-line:import-name
-import N9NodeRouting from '../src';
+import N9NodeRouting from '../src/index.js';
 import commons, {
 	closeServer,
 	defaultNodeRoutingConfOptions,
 	nodeRoutingMinimalOptions,
-} from './fixtures/commons';
-import { end, getLogsFromFile } from './fixtures/helper';
+} from './fixtures/commons.js';
+import { end, getLogsFromFile } from './fixtures/helper.js';
 
 const print = commons.print;
 

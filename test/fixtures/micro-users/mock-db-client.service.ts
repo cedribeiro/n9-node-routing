@@ -1,4 +1,4 @@
-import { BaseMongoObject } from './models/db.models';
+import { BaseMongoObject } from './models/db.models.js';
 
 export class MockDbClientService<E extends BaseMongoObject> {
 	private collection: E[] = [];

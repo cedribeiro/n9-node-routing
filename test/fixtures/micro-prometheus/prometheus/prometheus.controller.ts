@@ -1,6 +1,6 @@
 import { waitFor } from '@neo9/n9-node-utils';
 
-import { Get, JsonController, Post, Service } from '../../../../src';
+import { Get, JsonController, Post, Service } from '../../../../src/index.js';
 
 @Service()
 @JsonController()

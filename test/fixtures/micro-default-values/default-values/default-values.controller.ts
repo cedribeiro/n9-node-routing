@@ -7,10 +7,10 @@ import {
 	Post,
 	QueryParams,
 	Service,
-} from '../../../../src';
-import { BodyModel } from './body.model';
-import { HeadersModel } from './headers.model';
-import { QueryParamsModel } from './query-params.model';
+} from '../../../../src/index.js';
+import { BodyModel } from './body.model.js';
+import { HeadersModel } from './headers.model.js';
+import { QueryParamsModel } from './query-params.model.js';
 
 @Service()
 @JsonController()

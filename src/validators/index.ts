@@ -1,2 +1,2 @@
-export * from './date-parser.validator';
-export * from './string-or-number.validator';
+export * from './date-parser.validator.js';
+export * from './string-or-number.validator.js';

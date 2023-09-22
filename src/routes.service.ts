@@ -1,6 +1,6 @@
 import { getMetadataArgsStorage } from '@benjd90/routing-controllers';
 
-import { AclPerm, Route } from './models/routes.models';
+import { AclPerm, Route } from './models/routes.models.js';
 
 const aclDescriptions: object[] = [];
 

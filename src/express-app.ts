@@ -6,18 +6,18 @@ import * as Sentry from '@sentry/node';
 import * as Tracing from '@sentry/tracing';
 import type { Integration } from '@sentry/types/dist/integration';
 import * as ClassValidator from 'class-validator';
-import * as express from 'express';
+import express from 'express';
 import fastSafeStringify from 'fast-safe-stringify';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 import { createServer } from 'http';
-import * as morgan from 'morgan';
+import morgan from 'morgan';
 import * as PrometheusClient from 'prom-client';
+import type { PackageJson } from 'type-fest';
 import { Container } from 'typedi';
-import type { PackageJson } from 'types-package-json';
 import ErrnoException = NodeJS.ErrnoException;
 
-import * as N9NodeRouting from './models/routing';
-import { setRequestContext } from './requestid';
+import * as N9NodeRouting from './models/routing/index.js';
+import { setRequestContext } from './requestid.js';
 
 export async function init<ConfType extends N9NodeRouting.N9NodeRoutingBaseConf>(
 	options: N9NodeRouting.Options<ConfType>,

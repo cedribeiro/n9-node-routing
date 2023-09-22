@@ -1,6 +1,6 @@
 import ava from 'ava';
 
-import { IsStringOrNumber } from '../../src/validators/string-or-number.validator';
+import { IsStringOrNumber } from '../../src/validators/string-or-number.validator.js';
 
 ava('Should be valid with a string', (t) => {
 	const isStringOrNumber = new IsStringOrNumber();

@@ -4,12 +4,12 @@ import { Allow, IsBoolean, IsOptional, ValidateNested } from 'class-validator';
 import { Express } from 'express';
 import * as morgan from 'morgan';
 
-import { isStringOrNumber } from '../../validators/string-or-number.validator';
-import { N9NodeRoutingBaseConf } from './base-conf';
-import { RoutingControllersOptions } from './implementations/routing-controllers-options.implementation';
-import { Options } from './options';
-import { BodyParserOptions } from './options-bodyparser';
-import { PingDb } from './options-pingdb';
+import { isStringOrNumber } from '../../validators/string-or-number.validator.js';
+import { N9NodeRoutingBaseConf } from './base-conf.js';
+import { RoutingControllersOptions } from './implementations/routing-controllers-options.implementation.js';
+import { Options } from './options.js';
+import { BodyParserOptions } from './options-bodyparser.js';
+import { PingDb } from './options-pingdb.js';
 
 export interface HttpHookArguments<ConfType> {
 	expressApp: Express;

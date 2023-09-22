@@ -6,9 +6,9 @@ import {
 	ValidatorConstraint,
 	ValidatorConstraintInterface,
 } from 'class-validator';
-import * as _ from 'lodash';
+import _ from 'lodash-es';
 
-import { UserFrontDetail } from './users.models';
+import { UserFrontDetail } from './users.models.js';
 
 @ValidatorConstraint({ name: 'arrayValidator', async: false })
 export class ArrayValidator implements ValidatorConstraintInterface {

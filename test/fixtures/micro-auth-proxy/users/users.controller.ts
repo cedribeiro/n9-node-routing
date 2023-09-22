@@ -1,6 +1,6 @@
 import { Service } from 'typedi';
 
-import { Authorized, Get, JsonController, Session } from '../../../../src';
+import { Authorized, Get, JsonController, Session } from '../../../../src/index.js';
 
 @Service()
 @JsonController()

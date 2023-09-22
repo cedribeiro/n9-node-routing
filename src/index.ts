@@ -1,27 +1,31 @@
 import 'reflect-metadata';
-import './utils/error-to-json';
+import './utils/error-to-json.js';
 
-import n9NodeConf from '@neo9/n9-node-conf';
-import * as appRootDir from 'app-root-dir';
+import * as n9NodeConf from '@neo9/n9-node-conf';
 import { classToPlain } from 'class-transformer';
-import * as Path from 'path';
 import * as PrometheusClient from 'prom-client';
+import { PackageJson } from 'type-fest';
 import { Container } from 'typedi';
-import type { PackageJson } from 'types-package-json';
 
-import * as ExpressApp from './express-app';
-import { initAPM } from './init-apm';
-import { validateConf } from './init-conf';
-import initialiseModules from './initialise-modules';
-import * as N9NodeRouting from './models/routing';
-import { applyDefaultValuesOnOptions, getLoadingConfOptions, mergeOptionsAndConf } from './options';
-import { registerShutdown } from './register-system-signals';
-import { requestIdFilter } from './requestid';
-import * as Routes from './routes';
-import { initExposedConf } from './routes';
-import startModules from './start-modules';
-import { getEnvironment } from './utils';
-import { N9HttpClient } from './utils/http-client-base';
+// @ts-ignore - Package JSON isn't 100% matching
+import * as packageJsonFile from '../package.json' assert { type: 'json' };
+import * as ExpressApp from './express-app.js';
+import { initAPM } from './init-apm.js';
+import { validateConf } from './init-conf.js';
+import initialiseModules from './initialise-modules.js';
+import * as N9NodeRouting from './models/routing/index.js';
+import {
+	applyDefaultValuesOnOptions,
+	getLoadingConfOptions,
+	mergeOptionsAndConf,
+} from './options.js';
+import { registerShutdown } from './register-system-signals.js';
+import { requestIdFilter } from './requestid.js';
+import * as Routes from './routes.js';
+import { initExposedConf } from './routes.js';
+import startModules from './start-modules.js';
+import { getEnvironment } from './utils.js';
+import { N9HttpClient } from './utils/http-client-base.js';
 
 /* istanbul ignore next */
 function handleThrow(err: Error): void {
@@ -39,15 +43,15 @@ export * from 'routing-controllers-openapi';
 export * from '@neo9/n9-node-utils'; // allow users to use n9-node-utils without importing it specifically
 export { N9Log } from '@neo9/n9-node-log';
 
-export * from './decorators/acl.decorator';
-export * from './validators';
-export * from './transformer';
-export * from './models/routes.models';
-export * from './utils/http-client-base';
-export * from './utils/http-cargo-builder';
-export * from './utils/cargo';
+export * from './decorators/acl.decorator.js';
+export * from './validators/index.js';
+export * from './transformer/index.js';
+export * from './models/routes.models.js';
+export * from './utils/http-client-base.js';
+export * from './utils/http-cargo-builder.js';
+export * from './utils/cargo.js';
 
-export * as N9NodeRouting from './models/routing';
+export * as N9NodeRouting from './models/routing/index.js';
 
 export { PrometheusClient };
 
@@ -62,14 +66,15 @@ export default async <
 	// Options default
 	const environment = getEnvironment();
 	// eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
-	const packageJson: PackageJson = require(Path.join(appRootDir.get(), 'package.json'));
 
 	// Load project conf and logger & set as global
-	let conf: ConfType = n9NodeConf(getLoadingConfOptions(optionsParam));
+	let conf: ConfType = n9NodeConf.default(getLoadingConfOptions(optionsParam));
 	const options: N9NodeRouting.Options<ConfType> = mergeOptionsAndConf(
 		optionsParam,
 		conf.n9NodeRoutingOptions,
 	);
+	// @ts-ignore - Package JSON isn't 100% matching
+	const packageJson: PackageJson = packageJsonFile;
 	applyDefaultValuesOnOptions(options, environment, packageJson.name);
 	const logger = options.log;
 	(global as any).log = options.log;

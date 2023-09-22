@@ -1,7 +1,7 @@
 import { Transform, Type } from 'class-transformer';
 import { Allow, IsIn, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 
-import { N9NodeRouting, SecretTransformer } from '../../../../../src';
+import { N9NodeRouting, SecretTransformer } from '../../../../../src/index.js';
 
 class Baz {
 	@IsString()

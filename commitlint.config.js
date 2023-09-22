@@ -1,4 +1,4 @@
-module.exports = {
+export default {
 	parserPreset: {
 		parserOpts: {
 			headerPattern: /^([a-zA-Z0-9]*): ([a-zA-Z0-9-_' \.]*)$/,

@@ -1,13 +1,13 @@
 import { N9Error } from '@neo9/n9-node-utils';
 import ava, { Assertions } from 'ava';
 
-import { end, init, urlPrefix } from './fixtures/helper';
+import { end, init, urlPrefix } from './fixtures/helper.js';
 import {
 	User,
 	UserFrontDetail,
 	UserOtherDetail,
 	UserType,
-} from './fixtures/micro-body-class-validation/models/users.models';
+} from './fixtures/micro-body-class-validation/models/users.models.js';
 
 const microUsersFolder = 'micro-body-class-validation';
 

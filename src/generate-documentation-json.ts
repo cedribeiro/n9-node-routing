@@ -11,19 +11,22 @@ import type * as oa from 'openapi3-ts';
 import { join } from 'path';
 import * as RCOpenApi from 'routing-controllers-openapi';
 import { Container } from 'typedi';
-import type { PackageJson } from 'types-package-json';
 
-import * as N9NodeRouting from './models/routing';
-import { N9NodeConfOptions } from './models/routing';
-import { applyDefaultValuesOnOptions, getLoadingConfOptions, mergeOptionsAndConf } from './options';
-import { getEnvironment } from './utils';
+// @ts-ignore - Package JSON isn't 100% matching
+import * as packageJson from '../package.json' assert { type: 'json' };
+import * as N9NodeRouting from './models/routing/index.js';
+import { N9NodeConfOptions } from './models/routing/index.js';
+import {
+	applyDefaultValuesOnOptions,
+	getLoadingConfOptions,
+	mergeOptionsAndConf,
+} from './options.js';
+import { getEnvironment } from './utils.js';
 
 export function generateDocumentationJson(
 	n9NodeRoutingOptions: N9NodeRouting.Options,
 	serverAlreadyStarted: boolean = true,
 	defaultValuesAreAlreadySet: boolean = false,
-	// eslint-disable-next-line global-require,import/no-dynamic-require
-	packageJson: PackageJson = require(join(appRootDir.get(), 'package.json')),
 ): object {
 	if (defaultValuesAreAlreadySet) {
 		const environment = getEnvironment();
@@ -76,7 +79,6 @@ export function generateDocumentationJsonToFile(
 	const confOptions = getLoadingConfOptions(optionsParams);
 	const conf: N9NodeRouting.N9NodeRoutingBaseConf = n9NodeConf(confOptions);
 	// eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
-	const packageJson = require(join(appRootDir.get(), 'package.json'));
 	const environment = getEnvironment();
 	const options: N9NodeRouting.Options<any> = mergeOptionsAndConf(
 		optionsParams,

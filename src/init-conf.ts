@@ -3,7 +3,7 @@ import { N9Error } from '@neo9/n9-node-utils';
 import { classToPlain, plainToClass } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
 
-import * as N9NodeRouting from './models/routing';
+import * as N9NodeRouting from './models/routing/index.js';
 import ConfValidationOptions = N9NodeRouting.ConfValidationOptions;
 
 function formatWhitelistErrors(

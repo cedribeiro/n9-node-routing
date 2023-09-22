@@ -2,9 +2,10 @@ import { ExpressErrorMiddlewareInterface, Middleware } from '@benjd90/routing-co
 import * as Sentry from '@sentry/node';
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import fastSafeStringify from 'fast-safe-stringify';
+import * as newRelic from 'newrelic';
 import { Inject, Service } from 'typedi';
 
-import * as N9NodeRouting from '../models/routing';
+import * as N9NodeRouting from '../models/routing/index.js';
 
 function removeProps(obj: object, keys: string[]): void {
 	if (!obj) return;
@@ -37,8 +38,7 @@ export class ErrorHandler implements ExpressErrorMiddlewareInterface {
 			);
 		}
 		if (this.n9NodeRoutingOptions.apm?.type === 'newRelic') {
-			// eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
-			this.newRelicNoticeError = require('newrelic').noticeError;
+			this.newRelicNoticeError = newRelic.noticeError;
 		}
 	}
 

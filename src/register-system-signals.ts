@@ -4,8 +4,8 @@ import { signalIsNotUp } from '@promster/express';
 import fastSafeStringify from 'fast-safe-stringify';
 import { Server } from 'http';
 
-import * as N9NodeRouting from './models/routing';
-import * as Routes from './routes';
+import * as N9NodeRouting from './models/routing/index.js';
+import * as Routes from './routes.js';
 
 // istanbul ignore next
 async function shutdown(

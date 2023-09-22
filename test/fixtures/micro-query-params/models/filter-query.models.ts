@@ -8,8 +8,8 @@ import {
 	IsString,
 } from 'class-validator';
 
-import { Exclude, Expose, Transform, Type } from '../../../../src';
-import * as Utils from '../../../../src/utils';
+import { Exclude, Expose, Transform, Type } from '../../../../src/index.js';
+import * as Utils from '../../../../src/utils.js';
 
 class FilterQuerySubObject {
 	@IsNumber()

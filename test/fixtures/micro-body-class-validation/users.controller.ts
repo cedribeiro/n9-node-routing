@@ -1,5 +1,5 @@
-import { Body, JsonController, Post, Service } from '../../../src';
-import { User } from './models/users.models';
+import { Body, JsonController, Post, Service } from '../../../src/index.js';
+import { User } from './models/users.models.js';
 
 @Service()
 @JsonController('/users')

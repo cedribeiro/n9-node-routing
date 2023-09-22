@@ -1,15 +1,21 @@
 import { N9Error } from '@neo9/n9-node-utils';
 import ava, { Assertions } from 'ava';
 import { join } from 'path';
+import * as path from 'path';
 import * as tmp from 'tmp-promise';
+import { fileURLToPath } from 'url';
 
-import N9NodeRouting from '../src';
-import { Conf as InvalidConf } from './fixtures/common-conf-validation/configuration-invalid/conf/index.models';
-import { Conf as ValidConf } from './fixtures/common-conf-validation/configuration-valid/conf/index.models';
-import { Conf as ValidConfWithWhitelistErrors } from './fixtures/common-conf-validation/configuration-valid-with-additional-attributes/conf/index.models';
-import commons from './fixtures/commons';
-import { end, getLogsFromFile } from './fixtures/helper';
+import N9NodeRouting from '../src/index.js';
+import { Conf as InvalidConf } from './fixtures/common-conf-validation/configuration-invalid/conf/index.models.js';
+import { Conf as ValidConf } from './fixtures/common-conf-validation/configuration-valid/conf/index.models.js';
+import { Conf as ValidConfWithWhitelistErrors } from './fixtures/common-conf-validation/configuration-valid-with-additional-attributes/conf/index.models.js';
+import commons from './fixtures/commons.js';
+import { end, getLogsFromFile } from './fixtures/helper.js';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(__filename);
 const microConfValidation = join(__dirname, 'fixtures/common-conf-validation/');
 
 ava.beforeEach(() => {

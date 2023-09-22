@@ -1,5 +1,5 @@
 import { N9Log } from '@neo9/n9-node-log';
-import * as glob from 'glob-promise';
+import glob from 'glob-promise';
 import { join } from 'path';
 
 export default async (
@@ -15,8 +15,7 @@ export default async (
 				initFile.includes(firstSequentialInitFileName),
 			);
 			if (matchingInitFileIndex !== -1) {
-				// eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
-				let module = require(join(path, initFiles[matchingInitFileIndex]));
+				let module = await import(join(path, initFiles[matchingInitFileIndex]));
 				module = module.default ? module.default : module;
 				await module(log);
 				initFiles.splice(matchingInitFileIndex, 1);
@@ -24,15 +23,17 @@ export default async (
 		}
 	}
 
-	await Promise.all(
-		initFiles.map((file) => {
+	const modules: any[] = await Promise.all(
+		initFiles.map(async (file) => {
 			const moduleName = file.split('/').slice(-2)[0];
 			log.info(`Init module ${moduleName}`);
 
-			// eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
-			let module = require(join(path, file));
-			module = module.default ? module.default : module;
-			return module(log);
+			return import(join(path, file));
 		}),
 	);
+
+	modules.map((module) => {
+		const moduleReturned = module.default ? module.default : module;
+		return moduleReturned(log);
+	});
 };

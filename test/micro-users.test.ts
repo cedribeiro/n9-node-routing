@@ -1,8 +1,8 @@
 import { N9Error } from '@neo9/n9-node-utils';
 import ava, { Assertions } from 'ava';
 
-import { end, init, urlPrefix } from './fixtures/helper';
-import { User } from './fixtures/micro-users/models/users.models';
+import { end, init, urlPrefix } from './fixtures/helper.js';
+import { User } from './fixtures/micro-users/models/users.models.js';
 
 const microUsersFolder = 'micro-users';
 

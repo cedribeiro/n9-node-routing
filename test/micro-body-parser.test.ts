@@ -1,13 +1,19 @@
 import { N9Log } from '@neo9/n9-node-log';
 import ava, { Assertions } from 'ava';
 import { join } from 'path';
+import * as path from 'path';
 import * as stdMock from 'std-mocks';
+import { fileURLToPath } from 'url';
 
 // tslint:disable-next-line:import-name
-import N9NodeRouting, { N9HttpClient } from '../src';
-import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons';
-import { end } from './fixtures/helper';
+import N9NodeRouting, { N9HttpClient } from '../src/index.js';
+import commons, { defaultNodeRoutingConfOptions } from './fixtures/commons.js';
+import { end } from './fixtures/helper.js';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(__filename);
 const print = commons.print;
 const microBodyParser = join(__dirname, 'fixtures/micro-body-parser/');
 

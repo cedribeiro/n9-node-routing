@@ -1,8 +1,8 @@
 import * as crypto from 'crypto';
 import { Service } from 'typedi';
 
-import { MockDbClientService } from './mock-db-client.service';
-import { User } from './models/users.models';
+import { MockDbClientService } from './mock-db-client.service.js';
+import { User } from './models/users.models.js';
 
 @Service()
 export class UsersService {

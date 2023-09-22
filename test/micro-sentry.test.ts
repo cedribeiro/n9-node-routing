@@ -4,7 +4,7 @@ import * as Sentry from '@sentry/node';
 import ava, { Assertions } from 'ava';
 import * as stdMock from 'std-mocks';
 
-import { end, init, urlPrefix } from './fixtures/helper';
+import { end, init, urlPrefix } from './fixtures/helper.js';
 
 ava.beforeEach(() => {
 	delete (global as any).log;

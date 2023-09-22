@@ -1,14 +1,19 @@
 import ava, { Assertions } from 'ava';
 import got from 'got';
 import { join } from 'path';
+import * as path from 'path';
 import * as stdMock from 'std-mocks';
+import { fileURLToPath } from 'url';
 
 // tslint:disable-next-line:import-name
-import N9NodeRouting from '../src';
-import commons, { closeServer, defaultNodeRoutingConfOptions } from './fixtures/commons';
+import N9NodeRouting from '../src/index.js';
+import commons, { closeServer, defaultNodeRoutingConfOptions } from './fixtures/commons.js';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __filename = fileURLToPath(import.meta.url);
+// eslint-disable-next-line @typescript-eslint/naming-convention
+const __dirname = path.dirname(__filename);
 const print = commons.print;
-
 const appPath = join(__dirname, 'fixtures/micro-prometheus/');
 
 ava.beforeEach(() => {

@@ -133,7 +133,7 @@ export class NodeOptions extends Options implements SentryNodeOptionsInterface {
 
 	@IsOptional()
 	@IsNumber()
-	shutdownTimeout?: number;
+	declare shutdownTimeout?: number;
 
 	@IsOptional()
 	@IsString()
