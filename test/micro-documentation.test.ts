@@ -100,7 +100,7 @@ ava('Read documentation generated first', async (t: Assertions) => {
 	const options: Options = {
 		path: microValidatePath,
 	};
-	const generatedFilePath = generateDocumentationJsonToFile(options);
+	const generatedFilePath = await generateDocumentationJsonToFile(options);
 	const { server, prometheusServer } = await N9NodeRouting(options);
 
 	// Check /documentation

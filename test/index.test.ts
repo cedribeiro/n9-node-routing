@@ -1,4 +1,4 @@
-import n9NodeLog from '@neo9/n9-node-log';
+import { N9Log } from '@neo9/n9-node-log';
 import ava, { Assertions } from 'ava';
 import got from 'got';
 import * as stdMock from 'std-mocks';
@@ -60,7 +60,7 @@ ava('Should keep the custom logger and listening on port 5000', async (t: Assert
 	const file = await tmp.file();
 
 	stdMock.use({ print });
-	const log = n9NodeLog('custom', { developmentOutputFilePath: file.path });
+	const log = new N9Log('custom', { developmentOutputFilePath: file.path });
 	const { server, prometheusServer } = await N9NodeRouting({
 		log,
 		conf: defaultNodeRoutingConfOptions,

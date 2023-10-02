@@ -1,6 +1,6 @@
 import { Action } from '@benjd90/routing-controllers';
 import { N9ConfOptions } from '@neo9/n9-node-conf';
-import * as n9NodeLog from '@neo9/n9-node-log';
+import { N9Log } from '@neo9/n9-node-log';
 import { N9Error } from '@neo9/n9-node-utils';
 import * as Sentry from '@sentry/node';
 import * as appRootDir from 'app-root-dir';
@@ -32,7 +32,7 @@ function applyLogsOptionsDefaults(
 			: environment !== 'development';
 
 	if (!options.log) {
-		options.log = n9NodeLog.default(appName, {
+		options.log = new N9Log(appName, {
 			...options.logOptions,
 			formatJSON: options.enableLogFormatJSON,
 		});

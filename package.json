@@ -13,10 +13,7 @@
   "license": "MIT",
   "main": "./dist/src/index.js",
   "type": "module",
-  "exports": {
-    "types": "./dist/src/index.d.ts",
-    "default": "./dist/src/index.js"
-  },
+  "exports": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "files": [
     "dist/src"
@@ -31,8 +28,11 @@
     "test:debug": "export NODE_ENV=test && TS_NODE_FILES=true ava debug --verbose --color --serial --host 0.0.0.0 --port 9230 --break",
     "test:dev": "export NODE_ENV=test && TS_NODE_FILES=true ava --verbose --color --serial --watch",
     "test": "npm run lint && npm run build && export NODE_ENV=test && nyc ava --verbose --color --serial --no-worker-threads && nyc report --reporter=html",
-    "test:nolint": "npm run build && export NODE_ENV=test && nyc ava --verbose --color --serial --no-worker-threads && nyc report --reporter=html",
+    "test:nolint": "npm run build && export NODE_ENV=test && nyc ava --loader=ts-node/esm --verbose --color --serial --no-worker-threads && nyc report --reporter=html",
     "test:one": "npm run lint && npm run build && export NODE_ENV=test && nyc ava --verbose --color --serial",
+    "test:jest": "jest",
+    "test:jest:esm": "node --experimental-vm-modules --no-warnings node_modules/jest/bin/jest.js",
+    "test:ava:esm": "node --no-warnings --loader=ts-node/esm node_modules/ava/entrypoints/cli.mjs",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -f coverage.lcov",
     "preversion": "npm test",
     "prepublishOnly": "npm run build",
@@ -106,6 +106,7 @@
     "@neo9/n9-coding-style": "^5.1.2",
     "@neo9/n9-mongo-client": "^0.29.1",
     "@release-it/conventional-changelog": "^7.0.1",
+    "@tsconfig/node16": "^16.1.1",
     "@types/app-root-dir": "^0.1.1",
     "@types/async": "^3.2.20",
     "@types/cls-hooked": "^4.3.6",
@@ -113,6 +114,7 @@
     "@types/express": "4.17.17",
     "@types/fs-extra": "^11.0.1",
     "@types/helmet": "^4.0.0",
+    "@types/jest": "^29.5.5",
     "@types/lodash-es": "^4.17.9",
     "@types/mongodb": "^3.6.18",
     "@types/morgan": "^1.9.5",
@@ -128,9 +130,11 @@
     "codecov": "^3.8.3",
     "conventional-changelog-cli": "^4.1.0",
     "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-node": "^11.1.0",
     "esm": "^3.2.25",
     "fs-extra": "^11.1.1",
     "husky": "^4.3.8",
+    "jest": "^29.7.0",
     "mongodb-memory-server": "^8.15.1",
     "nodemon": "^3.0.1",
     "nyc": "^15.1.0",
@@ -138,6 +142,7 @@
     "release-it": "^16.1.5",
     "std-mocks": "^1.0.1",
     "tmp-promise": "^3.0.3",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "type-fest": "^4.3.1",
     "typescript": "^5.2.2"
@@ -154,7 +159,6 @@
       "--loader=ts-node/esm"
     ],
     "require": [
-      "ts-node/register",
       "reflect-metadata",
       "esm"
     ],

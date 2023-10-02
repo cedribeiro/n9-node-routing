@@ -1,6 +1,6 @@
 import { RoutingControllersOptions as RoutingControllersOptionsInterface } from '@benjd90/routing-controllers';
-import { AuthorizationChecker } from '@benjd90/routing-controllers/types/AuthorizationChecker';
-import { CurrentUserChecker } from '@benjd90/routing-controllers/types/CurrentUserChecker';
+import type { AuthorizationChecker } from '@benjd90/routing-controllers/types/AuthorizationChecker';
+import type { CurrentUserChecker } from '@benjd90/routing-controllers/types/CurrentUserChecker';
 import { Type } from 'class-transformer';
 import {
 	Allow,
@@ -12,7 +12,7 @@ import {
 	ValidateNested,
 	ValidatorOptions,
 } from 'class-validator';
-import { Class } from 'type-fest';
+import type { Class } from 'type-fest';
 
 import { ClassTransformOptions } from './class-transform-options.implementation.js';
 

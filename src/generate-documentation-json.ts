@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 
 import * as RoutingControllers from '@benjd90/routing-controllers';
-import n9NodeConf from '@neo9/n9-node-conf';
+import { configure } from '@neo9/n9-node-conf';
 import * as appRootDir from 'app-root-dir';
 import * as ClassValidator from 'class-validator';
 import { validationMetadatasToSchemas } from 'class-validator-jsonschema';
@@ -13,7 +13,7 @@ import * as RCOpenApi from 'routing-controllers-openapi';
 import { Container } from 'typedi';
 
 // @ts-ignore - Package JSON isn't 100% matching
-import * as packageJson from '../package.json' assert { type: 'json' };
+import * as packageJsonFile from '../package.json' assert { type: 'json' };
 import * as N9NodeRouting from './models/routing/index.js';
 import { N9NodeConfOptions } from './models/routing/index.js';
 import {
@@ -22,6 +22,8 @@ import {
 	mergeOptionsAndConf,
 } from './options.js';
 import { getEnvironment } from './utils.js';
+
+const packageJson = (packageJsonFile as any).default;
 
 export function generateDocumentationJson(
 	n9NodeRoutingOptions: N9NodeRouting.Options,
@@ -70,14 +72,14 @@ export function getDocumentationJsonPath(options: N9NodeRouting.Options): string
 	);
 }
 
-export function generateDocumentationJsonToFile(
+export async function generateDocumentationJsonToFile(
 	optionsParams: {
 		path?: string;
 		conf?: { n9NodeConf?: N9NodeConfOptions<N9NodeRouting.N9NodeRoutingBaseConf> };
 	} = {},
-): string {
+): Promise<string> {
 	const confOptions = getLoadingConfOptions(optionsParams);
-	const conf: N9NodeRouting.N9NodeRoutingBaseConf = n9NodeConf(confOptions);
+	const conf: N9NodeRouting.N9NodeRoutingBaseConf = await configure(confOptions);
 	// eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
 	const environment = getEnvironment();
 	const options: N9NodeRouting.Options<any> = mergeOptionsAndConf(

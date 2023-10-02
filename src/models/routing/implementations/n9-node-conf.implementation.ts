@@ -1,7 +1,7 @@
 import { N9ConfMergeStrategy, N9ConfOptions } from '@neo9/n9-node-conf';
 import { Type } from 'class-transformer';
 import { IsEnum, IsObject, IsOptional, IsString, ValidateNested } from 'class-validator';
-import { PartialDeep } from 'type-fest';
+import type { PartialDeep } from 'type-fest';
 
 import { N9NodeRouting } from '../../../index.js';
 

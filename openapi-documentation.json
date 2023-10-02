@@ -1,0 +1,825 @@
+{
+  "components": {
+    "schemas": {
+      "N9LogOptions": {
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": ["silent", "error", "warn", "info", "debug", "trace"]
+          },
+          "console": {
+            "type": "boolean"
+          },
+          "formatJSON": {
+            "type": "boolean"
+          },
+          "developmentOutputFilePath": {
+            "type": "string"
+          },
+          "filters": {
+            "items": {
+              "$ref": "#/components/schemas/Array"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "N9NodeConfOptionsExtendConfigPath": {
+        "properties": {
+          "absolute": {
+            "type": "string"
+          },
+          "relative": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "N9NodeConfOptionsExtendConfig": {
+        "properties": {
+          "path": {
+            "$ref": "#/components/schemas/N9NodeConfOptionsExtendConfigPath"
+          },
+          "key": {
+            "type": "string"
+          },
+          "mergeStrategy": {
+            "enum": ["v1", "v2"],
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": ["path"]
+      },
+      "N9NodeConfOptionsOverride": {
+        "properties": {
+          "value": {
+            "type": "object"
+          },
+          "mergeStrategy": {
+            "enum": ["v1", "v2"],
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": ["value"]
+      },
+      "N9NodeConfOptions": {
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "extendConfig": {
+            "$ref": "#/components/schemas/N9NodeConfOptionsExtendConfig"
+          },
+          "overridePackageJsonDirPath": {
+            "type": "string"
+          },
+          "override": {
+            "$ref": "#/components/schemas/N9NodeConfOptionsOverride"
+          }
+        },
+        "type": "object"
+      },
+      "ClassTransformOptionsTargetMap": {
+        "properties": {
+          "properties": {}
+        },
+        "type": "object",
+        "required": ["properties"]
+      },
+      "ClassTransformOptions": {
+        "properties": {
+          "strategy": {
+            "type": "string",
+            "enum": ["excludeAll", "exposeAll"]
+          },
+          "excludeExtraneousValues": {
+            "type": "boolean"
+          },
+          "groups": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "excludePrefixes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "ignoreDecorators": {
+            "type": "boolean"
+          },
+          "targetMaps": {
+            "items": {
+              "$ref": "#/components/schemas/Array"
+            },
+            "type": "array"
+          },
+          "enableCircularCheck": {
+            "type": "boolean"
+          },
+          "enableImplicitConversion": {
+            "type": "boolean"
+          },
+          "exposeDefaultValues": {
+            "type": "boolean"
+          },
+          "exposeUnsetFields": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "RoutingControllersOptionsDefaultsParamOptions": {
+        "properties": {
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "RoutingControllersOptionsDefaults": {
+        "properties": {
+          "nullResultCode": {
+            "type": "integer"
+          },
+          "undefinedResultCode": {
+            "type": "integer"
+          },
+          "paramOptions": {
+            "$ref": "#/components/schemas/RoutingControllersOptionsDefaultsParamOptions"
+          }
+        },
+        "type": "object"
+      },
+      "RoutingControllersOptions": {
+        "properties": {
+          "cors": {},
+          "routePrefix": {
+            "type": "string"
+          },
+          "controllers": {
+            "items": {},
+            "type": "array"
+          },
+          "middlewares": {},
+          "interceptors": {},
+          "classTransformer": {
+            "type": "boolean"
+          },
+          "classToPlainTransformOptions": {
+            "$ref": "#/components/schemas/ClassTransformOptions"
+          },
+          "plainToClassTransformOptions": {
+            "$ref": "#/components/schemas/ClassTransformOptions"
+          },
+          "validation": {},
+          "development": {
+            "type": "boolean"
+          },
+          "defaultErrorHandler": {
+            "type": "boolean"
+          },
+          "errorOverridingMap": {},
+          "authorizationChecker": {},
+          "currentUserChecker": {},
+          "defaults": {
+            "$ref": "#/components/schemas/RoutingControllersOptionsDefaults"
+          }
+        },
+        "type": "object"
+      },
+      "NewRelicOptions": {
+        "properties": {
+          "appName": {
+            "type": "string"
+          },
+          "licenseKey": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "APMOptions": {
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["newRelic"]
+          },
+          "newRelicOptions": {
+            "$ref": "#/components/schemas/NewRelicOptions"
+          }
+        },
+        "type": "object"
+      },
+      "ConfValidationOptions": {
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "formatValidationErrors": {
+            "type": "boolean"
+          },
+          "formatWhitelistErrors": {
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "ConfOptions": {
+        "properties": {
+          "n9NodeConf": {
+            "$ref": "#/components/schemas/N9NodeConfOptions"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/ConfValidationOptions"
+          }
+        },
+        "type": "object"
+      },
+      "BodyParserOptions": {
+        "properties": {
+          "inflate": {
+            "type": "boolean"
+          },
+          "limit": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "strict": {},
+          "type": {}
+        },
+        "type": "object"
+      },
+      "PingDb": {
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "thisArg": {}
+        },
+        "type": "object",
+        "required": ["name"]
+      },
+      "HttpPing": {
+        "properties": {
+          "dbs": {
+            "items": {
+              "$ref": "#/components/schemas/Array"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "HttpOptions": {
+        "properties": {
+          "ping": {},
+          "logLevel": {},
+          "port": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "preventListen": {
+            "type": "boolean"
+          },
+          "routingController": {
+            "$ref": "#/components/schemas/RoutingControllersOptions"
+          },
+          "bodyParser": {
+            "$ref": "#/components/schemas/BodyParserOptions"
+          }
+        },
+        "type": "object"
+      },
+      "HttpClientSensitiveHeadersOptions": {
+        "properties": {
+          "alterSensitiveHeaders": {
+            "type": "boolean"
+          },
+          "alteringFormat": {},
+          "sensitiveHeaders": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "HttpClientOptions": {
+        "properties": {
+          "gotOptions": {
+            "type": "object"
+          },
+          "sensitiveHeadersOptions": {
+            "$ref": "#/components/schemas/HttpClientSensitiveHeadersOptions"
+          }
+        },
+        "type": "object"
+      },
+      "PrometheusOptions": {
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "port": {
+            "type": "number"
+          },
+          "labels": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "accuracies": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Options": {
+        "properties": {
+          "debug": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "dsn": {
+            "type": "string"
+          },
+          "defaultIntegrations": {},
+          "integrations": {},
+          "ignoreErrors": {},
+          "transport": {},
+          "transportOptions": {},
+          "tunnel": {
+            "type": "string"
+          },
+          "release": {
+            "type": "string"
+          },
+          "environment": {
+            "type": "string"
+          },
+          "dist": {
+            "type": "string"
+          },
+          "maxBreadcrumbs": {
+            "type": "number"
+          },
+          "logLevel": {
+            "enum": ["None", "Error", "Debug", "Verbose", 0, 1, 2, 3],
+            "type": "string"
+          },
+          "sampleRate": {
+            "type": "number"
+          },
+          "attachStacktrace": {
+            "type": "boolean"
+          },
+          "maxValueLength": {
+            "type": "number"
+          },
+          "normalizeDepth": {
+            "type": "number"
+          },
+          "shutdownTimeout": {
+            "type": "number"
+          },
+          "tracesSampleRate": {
+            "type": "number"
+          },
+          "autoSessionTracking": {
+            "type": "boolean"
+          },
+          "initialScope": {},
+          "_metadata": {},
+          "_experiments": {},
+          "hasProxy": {
+            "type": "boolean"
+          },
+          "enableRequestId": {
+            "type": "boolean"
+          },
+          "enableLogFormatJSON": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string"
+          },
+          "conf": {
+            "$ref": "#/components/schemas/ConfOptions"
+          },
+          "log": {},
+          "logOptions": {
+            "$ref": "#/components/schemas/N9LogOptions"
+          },
+          "http": {
+            "$ref": "#/components/schemas/HttpOptions"
+          },
+          "httpClient": {
+            "$ref": "#/components/schemas/HttpClientOptions"
+          },
+          "openapi": {
+            "$ref": "#/components/schemas/SwaggerOptions"
+          },
+          "shutdown": {
+            "$ref": "#/components/schemas/ShutdownOptions"
+          },
+          "prometheus": {
+            "$ref": "#/components/schemas/PrometheusOptions"
+          },
+          "sentry": {
+            "$ref": "#/components/schemas/SentryOptions"
+          },
+          "apm": {
+            "$ref": "#/components/schemas/APMOptions"
+          },
+          "firstSequentialInitFileNames": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "firstSequentialStartFileNames": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "NodeOptions": {
+        "properties": {
+          "serverName": {
+            "type": "string"
+          },
+          "shutdownTimeout": {
+            "type": "number"
+          },
+          "httpProxy": {
+            "type": "string"
+          },
+          "httpsProxy": {
+            "type": "string"
+          },
+          "caCerts": {
+            "type": "string"
+          },
+          "frameContextLines": {
+            "type": "integer"
+          },
+          "debug": {
+            "type": "boolean"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "dsn": {
+            "type": "string"
+          },
+          "defaultIntegrations": {},
+          "integrations": {},
+          "ignoreErrors": {},
+          "transport": {},
+          "transportOptions": {},
+          "tunnel": {
+            "type": "string"
+          },
+          "release": {
+            "type": "string"
+          },
+          "environment": {
+            "type": "string"
+          },
+          "dist": {
+            "type": "string"
+          },
+          "maxBreadcrumbs": {
+            "type": "number"
+          },
+          "logLevel": {
+            "enum": ["None", "Error", "Debug", "Verbose", 0, 1, 2, 3],
+            "type": "string"
+          },
+          "sampleRate": {
+            "type": "number"
+          },
+          "attachStacktrace": {
+            "type": "boolean"
+          },
+          "maxValueLength": {
+            "type": "number"
+          },
+          "normalizeDepth": {
+            "type": "number"
+          },
+          "tracesSampleRate": {
+            "type": "number"
+          },
+          "autoSessionTracking": {
+            "type": "boolean"
+          },
+          "initialScope": {},
+          "_metadata": {},
+          "_experiments": {}
+        },
+        "type": "object"
+      },
+      "MiddlewareErrorOutput": {
+        "properties": {
+          "statusCode": {
+            "$ref": "#/components/schemas/Object"
+          }
+        },
+        "type": "object"
+      },
+      "SentryOptionsIntegration": {
+        "properties": {
+          "kind": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": ["kind"]
+      },
+      "MiddlewareError": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "statusCode": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "status_code": {
+            "$ref": "#/components/schemas/Object"
+          },
+          "output": {
+            "$ref": "#/components/schemas/MiddlewareErrorOutput"
+          }
+        },
+        "type": "object"
+      },
+      "SentryOptionsAdditionalIntegrationsOptions": {
+        "properties": {
+          "methods": {
+            "type": "array",
+            "enum": ["all", "get", "head", "post", "put", "delete", "options", "trace", "patch"],
+            "items": {}
+          }
+        },
+        "type": "object"
+      },
+      "SentryOptionsAdditionalIntegrations": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": ["tracing"]
+          },
+          "options": {
+            "$ref": "#/components/schemas/SentryOptionsAdditionalIntegrationsOptions"
+          }
+        },
+        "type": "object",
+        "required": ["kind"]
+      },
+      "SentryOptions": {
+        "properties": {
+          "initOptions": {
+            "$ref": "#/components/schemas/NodeOptions"
+          },
+          "forceCustomOptions": {
+            "type": "boolean"
+          },
+          "additionalIntegrations": {
+            "items": {
+              "$ref": "#/components/schemas/Array"
+            },
+            "type": "array"
+          },
+          "requestHandlerOptions": {},
+          "errorHandlerOptions": {
+            "$ref": "#/components/schemas/SentryErrorHandlerOptions"
+          }
+        },
+        "type": "object"
+      },
+      "CallbacksBeforeShutdown": {
+        "properties": {
+          "thisArg": {},
+          "name": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": ["thisArg"]
+      },
+      "ShutdownOptions": {
+        "properties": {
+          "callbacksBeforeShutdown": {
+            "items": {
+              "$ref": "#/components/schemas/Array"
+            },
+            "type": "array"
+          },
+          "callbacksOnShutdownSignalReceived": {
+            "items": {
+              "$ref": "#/components/schemas/Array"
+            },
+            "type": "array"
+          },
+          "waitDurationBeforeStop": {
+            "type": "number"
+          },
+          "enableGracefulShutdown": {
+            "type": "boolean"
+          },
+          "timeout": {
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "SwaggerUi": {
+        "properties": {
+          "customCss": {
+            "type": "string"
+          },
+          "customJs": {
+            "type": "string"
+          },
+          "swaggerUrl": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SwaggerOptions": {
+        "properties": {
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "generateDocumentationOnTheFly": {
+            "type": "boolean"
+          },
+          "jsonUrl": {
+            "type": "string"
+          },
+          "jsonPath": {
+            "type": "string"
+          },
+          "swaggerui": {
+            "$ref": "#/components/schemas/SwaggerUi"
+          }
+        },
+        "type": "object"
+      },
+      "N9NodeRoutingBaseConf": {
+        "properties": {
+          "env": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "n9NodeRoutingOptions": {
+            "$ref": "#/components/schemas/Options"
+          }
+        },
+        "type": "object"
+      },
+      "Message": {
+        "properties": {
+          "date": {
+            "$ref": "#/components/schemas/Date",
+            "oneOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "format": "date-time",
+                "type": "string"
+              }
+            ]
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": ["date", "body"]
+      },
+      "User": {
+        "properties": {
+          "username": {
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "type": "object",
+        "required": ["username"]
+      }
+    }
+  },
+  "info": {
+    "title": "n9-node-routing",
+    "version": "2.1.0",
+    "description": "Library to easily start app with routing-controllers"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/validate": {
+      "post": {
+        "operationId": "ValidateController.validate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "description": "User",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Validate",
+        "tags": ["Validate"]
+      }
+    },
+    "/validate-allow-all": {
+      "post": {
+        "operationId": "ValidateController.validateOk",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "description": "User",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Validate ok",
+        "tags": ["Validate"]
+      }
+    },
+    "/parse-date": {
+      "post": {
+        "operationId": "ValidateController.parseDate",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Message"
+              }
+            }
+          },
+          "description": "Message",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {}
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Parse date",
+        "tags": ["Validate"]
+      }
+    }
+  }
+}

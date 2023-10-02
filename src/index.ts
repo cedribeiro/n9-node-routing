@@ -1,10 +1,9 @@
 import 'reflect-metadata';
 import './utils/error-to-json.js';
 
-import * as n9NodeConf from '@neo9/n9-node-conf';
+import { configure } from '@neo9/n9-node-conf';
 import { classToPlain } from 'class-transformer';
 import * as PrometheusClient from 'prom-client';
-import { PackageJson } from 'type-fest';
 import { Container } from 'typedi';
 
 // @ts-ignore - Package JSON isn't 100% matching
@@ -31,11 +30,11 @@ import { N9HttpClient } from './utils/http-client-base.js';
 function handleThrow(err: Error): void {
 	throw err;
 }
-export * from '@benjd90/routing-controllers';
 
 export { Inject, Service, Container } from 'typedi';
 
-export { UseContainerOptions, getFromContainer, useContainer } from 'class-validator';
+export { getFromContainer, useContainer } from 'class-validator';
+export type { UseContainerOptions } from 'class-validator';
 export * from 'class-validator';
 export { Type, Transform, Exclude, Expose, classToPlain, plainToClass } from 'class-transformer';
 export { getMetadataArgsStorage } from '@benjd90/routing-controllers';
@@ -65,16 +64,15 @@ export default async <
 	process.on('unhandledRejection', handleThrow);
 	// Options default
 	const environment = getEnvironment();
-	// eslint-disable-next-line @typescript-eslint/no-var-requires,global-require,import/no-dynamic-require
 
 	// Load project conf and logger & set as global
-	let conf: ConfType = n9NodeConf.default(getLoadingConfOptions(optionsParam));
+	let conf: ConfType = await configure(getLoadingConfOptions(optionsParam));
 	const options: N9NodeRouting.Options<ConfType> = mergeOptionsAndConf(
 		optionsParam,
 		conf.n9NodeRoutingOptions,
 	);
 	// @ts-ignore - Package JSON isn't 100% matching
-	const packageJson: PackageJson = packageJsonFile;
+	const packageJson = (packageJsonFile as any).default;
 	applyDefaultValuesOnOptions(options, environment, packageJson.name);
 	const logger = options.log;
 	(global as any).log = options.log;

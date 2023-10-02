@@ -1,2 +1,8 @@
 extends:
   - './node_modules/@neo9/n9-coding-style/.eslintrc.yaml'
+parserOptions:
+  sourceType: module
+  ecmaVersion: 2022
+env:
+  node: true
+  browser: false
